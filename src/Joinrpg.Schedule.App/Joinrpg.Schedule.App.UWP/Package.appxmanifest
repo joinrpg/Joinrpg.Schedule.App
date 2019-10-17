@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="c56c1cd8-c219-4906-829c-1f89636e183a"
-    Publisher="CN=cb15b663-9b73-411c-a114-4c8ddbd2b468"
+    Name="1113052EE17A8.JoinrpgSchedule"
+    Publisher="CN=DCCF689E-7BDB-43A9-A58E-D9E1581C1C04"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="ec0cc741-fd3e-485c-81be-68815c480690" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="92833830-5e8a-4fa7-b301-5d2ffb7175a7" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>Joinrpg.Schedule.App.UWP</DisplayName>
-    <PublisherDisplayName>cb15b663-9b73-411c-a114-4c8ddbd2b468</PublisherDisplayName>
+    <DisplayName>Joinrpg Schedule</DisplayName>
+    <PublisherDisplayName>Леонид Царев</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -32,10 +32,10 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="Joinrpg.Schedule.App.UWP.App">
       <uap:VisualElements
-        DisplayName="Joinrpg.Schedule.App.UWP"
+        DisplayName="Joinrpg Расписание"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="Joinrpg.Schedule.App.UWP"
+        Description="Отображает расписание мероприятий по данным joinrpg.ru"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\LargeTile.png" Square71x71Logo="Assets\SmallTile.png">
           <uap:ShowNameOnTiles>
