@@ -19,18 +19,25 @@ namespace Joinrpg.Schedule.App.Views
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
-    public partial class ItemsPage : ContentPage
+    public partial class SchedulePage : ContentPage
     {
-        ProjectScheduleViewModel viewModel;
+        private readonly ProgramItemsSelectMode _itemSelectMode;
+        ScheduleViewModel viewModel;
 
-        public ItemsPage()
+        public SchedulePage() : this(ProgramItemsSelectMode.Today)
         {
+            
+        }
+        public SchedulePage(ProgramItemsSelectMode itemSelectMode)
+        {
+            _itemSelectMode = itemSelectMode;
             InitializeComponent();
 
             var scheduleService = DependencyService.Get<IScheduleService>();
+            var provider = DependencyService.Get<IDateTimeProvider>();
 
             //TODO from DI
-            BindingContext = viewModel = new ProjectScheduleViewModel(scheduleService.GetProjectScheduleService(589));
+            BindingContext = viewModel = new ScheduleViewModel(scheduleService.GetProjectScheduleService(589), provider);
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -55,7 +62,7 @@ namespace Joinrpg.Schedule.App.Views
 
             if (!viewModel.Loaded)
             {
-                await viewModel.InitializeAsync(null);
+                await viewModel.InitializeAsync(_itemSelectMode);
             }
                 
         }

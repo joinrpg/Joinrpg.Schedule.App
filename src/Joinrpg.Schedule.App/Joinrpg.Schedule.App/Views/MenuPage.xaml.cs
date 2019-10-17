@@ -20,8 +20,10 @@ namespace Joinrpg.Schedule.App.Views
 
             menuItems = new List<HomeMenuItem>
             {
-                new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
-                new HomeMenuItem {Id = MenuItemType.About, Title="About" }
+                new HomeMenuItem {Id = MenuItemType.Today, Title="Сегодня будут" },
+                new HomeMenuItem {Id = MenuItemType.NowGoing, Title="Сейчас идут" },
+                new HomeMenuItem {Id = MenuItemType.Tomorrow, Title="Завтра" },
+                new HomeMenuItem {Id = MenuItemType.About, Title="О приложении" }
             };
 
             ListViewMenu.ItemsSource = menuItems;

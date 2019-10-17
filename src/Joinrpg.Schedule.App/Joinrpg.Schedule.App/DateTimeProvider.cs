@@ -9,7 +9,7 @@ namespace Joinrpg.Schedule.App
     {
         public DateTimeOffset Now()
         {
-            return new DateTimeOffset(2019, 10, 19, 15, 00, 00, TimeSpan.FromHours(3));
+            return new DateTimeOffset(2019, 10, 19, 15, 00, 01, TimeSpan.FromHours(3));
             //return DateTimeOffset.Now;
         }
     }

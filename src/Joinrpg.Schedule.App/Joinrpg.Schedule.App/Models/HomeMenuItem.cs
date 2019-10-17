@@ -6,8 +6,11 @@ namespace Joinrpg.Schedule.App.Models
 {
     public enum MenuItemType
     {
-        Browse,
-        About
+        Today,
+        About,
+        NowGoing,
+        Tomorrow,
+        ProudlyPresent,
     }
     public class HomeMenuItem
     {

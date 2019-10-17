@@ -5,23 +5,31 @@ namespace Joinrpg.Schedule.App.ViewModels
 {
     public class ProgramItemViewModel
     {
-        private ProgramItemInfoApi Model { get; }
+        public string Name { get; }
 
-        public string Name => Model.Name;
-        public string Description => Model.Description;
+        public string Description { get; }
 
-        public string StartTime => Model.StartTime.ToLocalTime().TimeOfDay.ToString();
+        public string StartTime { get; }
 
-        public string EndTime => Model.EndTime.ToLocalTime().TimeOfDay.ToString();
+        public string EndTime { get; }
 
         public string Authors { get; }
         public string Room { get;  }
 
         public ProgramItemViewModel(ProgramItemInfoApi model)
         {
-            Model = model;
+            Name = model.Name;
+            Description = model.Description;
+            StartTime = model.StartTime.ToLocalTime().TimeOfDay.ToString();
+            EndTime = model.EndTime.ToLocalTime().TimeOfDay.ToString();
             Authors = string.Join(", ", model.Authors.Select(author => author.Name));
             Room = string.Join(", ", model.Rooms.Select(room => room.Name));
+        }
+
+        public ProgramItemViewModel()
+        {
+            Name = "test item";
+
         }
     }
 }

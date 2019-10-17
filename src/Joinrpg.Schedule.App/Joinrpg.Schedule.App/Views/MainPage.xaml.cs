@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using Joinrpg.Schedule.App.Models;
+using Joinrpg.Schedule.App.ViewModels;
 
 namespace Joinrpg.Schedule.App.Views
 {
@@ -21,21 +22,32 @@ namespace Joinrpg.Schedule.App.Views
 
             MasterBehavior = MasterBehavior.Popover;
 
-            MenuPages.Add((int)MenuItemType.Browse, (NavigationPage)Detail);
+            MenuPages.Add((int)MenuItemType.Today, (NavigationPage)Detail);
         }
 
         public async Task NavigateFromMenu(int id)
         {
             if (!MenuPages.ContainsKey(id))
             {
-                switch (id)
+                var itemType = (MenuItemType) id;
+                switch (itemType)
                 {
-                    case (int)MenuItemType.Browse:
-                        MenuPages.Add(id, new NavigationPage(new ItemsPage()));
+                    case MenuItemType.Today:
+                        MenuPages.Add(id, new NavigationPage(new SchedulePage(ProgramItemsSelectMode.Today)));
                         break;
-                    case (int)MenuItemType.About:
+                    case MenuItemType.About:
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));
                         break;
+                    case MenuItemType.NowGoing:
+                        MenuPages.Add(id, new NavigationPage(new SchedulePage(ProgramItemsSelectMode.NowGoing)));
+                        break;
+                    case MenuItemType.Tomorrow:
+                        MenuPages.Add(id, new NavigationPage(new SchedulePage(ProgramItemsSelectMode.Tomorrow)));
+                        break;
+                    case MenuItemType.ProudlyPresent:
+                        throw  new NotImplementedException();
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             }
 
