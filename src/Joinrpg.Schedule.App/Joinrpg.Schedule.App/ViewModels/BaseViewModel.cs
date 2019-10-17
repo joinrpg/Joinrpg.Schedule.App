@@ -2,18 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
-using Xamarin.Forms;
-
-using Joinrpg.Schedule.App.Models;
-using Joinrpg.Schedule.App.Services;
+using System.Threading.Tasks;
 
 namespace Joinrpg.Schedule.App.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
-
         bool isBusy = false;
         public bool IsBusy
         {
@@ -46,11 +40,15 @@ namespace Joinrpg.Schedule.App.ViewModels
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = PropertyChanged;
-            if (changed == null)
-                return;
 
-            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            changed?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
+        //TODO: add strong-typing to navigation data
+        public virtual Task InitializeAsync(object navigationData)
+        {
+            return Task.FromResult(false);
+        }
     }
 }

@@ -27,9 +27,9 @@
         </Grid.RowDefinitions>
         <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
-                    <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="64" />
-                </ContentView>
+                <Label FontSize="40" HorizontalTextAlignment="Center" TextColor="White" Margin="10">
+                    Joinrpg Расписание
+                </Label>
             </StackLayout>
         </StackLayout>
         <ScrollView Grid.Row="1">
@@ -38,34 +38,9 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="AppName" FontAttributes="Bold" FontSize="22" />
+                                <Span Text="Joinrpg Расписание" FontAttributes="Bold" FontSize="22" />
                                 <Span Text=" " />
                                 <Span Text="1.0" ForegroundColor="{StaticResource LightTextColor}" />
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Label>
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="This app is written in C# and native APIs using the" />
-                                <Span Text=" " />
-                                <Span Text="Xamarin Platform" FontAttributes="Bold" />
-                                <Span Text="." />
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Label>
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="It shares code with its" />
-                                <Span Text=" " />
-                                <Span Text="iOS, Android, and Windows" FontAttributes="Bold" />
-                                <Span Text=" " />
-                                <Span Text="versions." />
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>

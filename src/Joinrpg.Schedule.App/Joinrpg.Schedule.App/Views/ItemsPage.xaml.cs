@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -10,6 +11,7 @@ using Xamarin.Forms.Xaml;
 using Joinrpg.Schedule.App.Models;
 using Joinrpg.Schedule.App.Views;
 using Joinrpg.Schedule.App.ViewModels;
+using Joinrpg.Web.XGameApi.Client;
 
 namespace Joinrpg.Schedule.App.Views
 {
@@ -18,38 +20,41 @@ namespace Joinrpg.Schedule.App.Views
     [DesignTimeVisible(false)]
     public partial class ItemsPage : ContentPage
     {
-        ItemsViewModel viewModel;
+        ProjectScheduleViewModel viewModel;
 
         public ItemsPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel();
+            //TODO from DI
+            BindingContext = viewModel = new ProjectScheduleViewModel(new ProjectScheduleWebClient(new HttpClient()));
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as Item;
-            if (item == null)
+          /*  if (!(args.SelectedItem is Item item))
                 return;
 
             await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
 
             // Manually deselect item.
-            ItemsListView.SelectedItem = null;
+            ItemsListView.SelectedItem = null; */
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+      //      await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
-            if (viewModel.Items.Count == 0)
-                viewModel.LoadItemsCommand.Execute(null);
+            if (!viewModel.Loaded)
+            {
+                await viewModel.InitializeAsync(null);
+            }
+                
         }
     }
 }
