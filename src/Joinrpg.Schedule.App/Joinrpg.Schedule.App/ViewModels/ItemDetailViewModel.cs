@@ -6,10 +6,15 @@ namespace Joinrpg.Schedule.App.ViewModels
 {
     public class ItemDetailViewModel : BaseViewModel
     {
-        public Item Item { get; set; }
-        public ItemDetailViewModel(Item item = null)
+        public ProgramItemModel Item { get; set; }
+
+        public ItemDetailViewModel() : this(new ProgramItemModel())
         {
-            Title = item?.Text;
+            
+        }
+        public ItemDetailViewModel(ProgramItemModel item)
+        {
+            Title = item?.Name;
             Item = item;
         }
     }

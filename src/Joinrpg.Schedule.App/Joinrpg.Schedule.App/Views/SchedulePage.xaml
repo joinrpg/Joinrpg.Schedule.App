@@ -32,7 +32,9 @@
                 ItemSelected="OnItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <views:ProgramItemViewCell></views:ProgramItemViewCell>
+                    <ViewCell>
+                        <views:ProgramItemViewCell></views:ProgramItemViewCell>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

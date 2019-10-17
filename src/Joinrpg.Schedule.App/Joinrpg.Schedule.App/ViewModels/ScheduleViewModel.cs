@@ -20,7 +20,7 @@ namespace Joinrpg.Schedule.App.ViewModels
     {
         private IDateTimeProvider _dateTimeProvider;
         private readonly IProjectScheduleService _scheduleService;
-        private ObservableCollection<ProgramItemViewModel> _programItems = new ObservableCollection<ProgramItemViewModel>();
+        private ObservableCollection<ProgramItemModel> _programItems = new ObservableCollection<ProgramItemModel>();
         private bool _loaded;
         private bool _hasError;
         private string _errorText;
@@ -46,7 +46,7 @@ namespace Joinrpg.Schedule.App.ViewModels
             await UpdateSchedule();
         }
 
-        public ObservableCollection<ProgramItemViewModel> ProgramItems
+        public ObservableCollection<ProgramItemModel> ProgramItems
         {
             get => _programItems;
             set => SetProperty(ref _programItems, value);
@@ -107,7 +107,7 @@ namespace Joinrpg.Schedule.App.ViewModels
                 ProgramItems.Clear();
                 foreach (var item in SelectProgramItems(items))
                 {
-                    ProgramItems.Add(new ProgramItemViewModel(item));
+                    ProgramItems.Add(new ProgramItemModel(item));
                 }
             }
             catch (Exception e)

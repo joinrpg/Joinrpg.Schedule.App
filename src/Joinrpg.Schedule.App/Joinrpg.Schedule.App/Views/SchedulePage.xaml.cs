@@ -42,13 +42,13 @@ namespace Joinrpg.Schedule.App.Views
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-          /*  if (!(args.SelectedItem is Item item))
+            if (!(args.SelectedItem is ProgramItemModel item))
                 return;
 
             await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
 
             // Manually deselect item.
-            ItemsListView.SelectedItem = null; */
+            ItemsListView.SelectedItem = null; 
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)

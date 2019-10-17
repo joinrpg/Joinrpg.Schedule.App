@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace Joinrpg.Schedule.App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProgramItemViewCell : ViewCell
+    public partial class ProgramItemViewCell : ContentView
     {
         public ProgramItemViewCell()
         {
