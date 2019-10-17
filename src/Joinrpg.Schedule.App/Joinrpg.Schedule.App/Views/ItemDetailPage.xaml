@@ -17,7 +17,7 @@
            <views:ProgramItemViewCell BindingContext="{Binding Item}">
 
            </views:ProgramItemViewCell>
-           <Label Text="{Binding Item.Description}" LineBreakMode="WordWrap"></Label>
+           <Label Text="{Binding Item.Description}" LineBreakMode="WordWrap" Margin="10"></Label>
        </StackLayout>
     </ContentView>
     

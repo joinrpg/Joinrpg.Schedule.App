@@ -46,6 +46,9 @@ namespace Joinrpg.Schedule.App.Views
                         break;
                     case MenuItemType.ProudlyPresent:
                         throw  new NotImplementedException();
+                    case MenuItemType.All:
+                        MenuPages.Add(id, new NavigationPage(new SchedulePage(ProgramItemsSelectMode.All)));
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }

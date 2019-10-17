@@ -14,6 +14,7 @@ namespace Joinrpg.Schedule.App.ViewModels
         Today,
         NowGoing,
         Tomorrow,
+        All
     }
 
     public class ScheduleViewModel : BaseViewModel
@@ -91,6 +92,9 @@ namespace Joinrpg.Schedule.App.ViewModels
                 case ProgramItemsSelectMode.Tomorrow:
                     Title = "Завтра будут";
                     break;
+                case ProgramItemsSelectMode.All:
+                    Title = "Все мероприятия";
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -141,6 +145,9 @@ namespace Joinrpg.Schedule.App.ViewModels
                     var tomorrow = now.Date.AddDays(1);
                     return items.Where(item => item.StartTime.Date == tomorrow || item.EndTime.Date == tomorrow)
                         .OrderBy(item => item.StartTime);
+                case ProgramItemsSelectMode.All:
+                    return items.OrderBy(item => item.StartTime);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }

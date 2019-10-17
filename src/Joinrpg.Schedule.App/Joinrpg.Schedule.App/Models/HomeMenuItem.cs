@@ -11,6 +11,7 @@ namespace Joinrpg.Schedule.App.Models
         NowGoing,
         Tomorrow,
         ProudlyPresent,
+        All,
     }
     public class HomeMenuItem
     {
