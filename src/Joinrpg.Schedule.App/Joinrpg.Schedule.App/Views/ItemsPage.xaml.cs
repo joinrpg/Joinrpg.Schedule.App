@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using Joinrpg.Schedule.App.Models;
+using Joinrpg.Schedule.App.Services.Interfaces;
 using Joinrpg.Schedule.App.Views;
 using Joinrpg.Schedule.App.ViewModels;
 using Joinrpg.Web.XGameApi.Client;
@@ -26,8 +27,10 @@ namespace Joinrpg.Schedule.App.Views
         {
             InitializeComponent();
 
+            var scheduleService = DependencyService.Get<IScheduleService>();
+
             //TODO from DI
-            BindingContext = viewModel = new ProjectScheduleViewModel(new ProjectScheduleWebClient(new HttpClient()));
+            BindingContext = viewModel = new ProjectScheduleViewModel(scheduleService.GetProjectScheduleService(589));
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)

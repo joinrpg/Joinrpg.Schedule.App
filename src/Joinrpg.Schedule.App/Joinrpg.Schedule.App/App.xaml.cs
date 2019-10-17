@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Joinrpg.Schedule.App.Services;
 using Joinrpg.Schedule.App.Views;
+using Joinrpg.Schedule.Services.Impl;
 
 namespace Joinrpg.Schedule.App
 {
@@ -13,7 +14,8 @@ namespace Joinrpg.Schedule.App
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<ScheduleServiceImpl>();
+            DependencyService.Register<DateTimeProvider>();
             MainPage = new MainPage();
         }
 

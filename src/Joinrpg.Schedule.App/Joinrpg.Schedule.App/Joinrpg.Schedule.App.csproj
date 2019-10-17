@@ -11,6 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Joinrpg.Schedule.App.Services.Interfaces\Joinrpg.Schedule.App.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\..\Joinrpg.Schedule.Services.Impl\Joinrpg.Schedule.Services.Impl.csproj" />
     <ProjectReference Include="..\..\Joinrpg.Web.XGameApi.Client\Joinrpg.Web.XGameApi.Client.csproj" />
     <ProjectReference Include="..\..\JoinRpg.Web.XGameApi.Contract\JoinRpg.Web.XGameApi.Contract.csproj" />
   </ItemGroup>
