@@ -15,6 +15,7 @@ namespace Joinrpg.Schedule.App.PresentationMode.PresentationSuggesters
                 yield return new NavigationArgs()
                 {
                     Type = MenuItemType.NowGoing,
+                    Source = nameof(NowGoingListPresentations),
                 };
             }
         }

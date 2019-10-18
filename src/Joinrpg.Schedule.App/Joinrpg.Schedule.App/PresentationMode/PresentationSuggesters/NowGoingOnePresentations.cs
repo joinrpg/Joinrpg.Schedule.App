@@ -9,7 +9,7 @@ namespace Joinrpg.Schedule.App.PresentationMode.PresentationSuggesters
     {
         public IEnumerable<NavigationArgs> GetSuggestions(DateTimeOffset now, IReadOnlyList<ProgramItemInfoApi> schedule)
         {
-            return schedule.NowGoing(now).NavigationArgs(MenuItemType.ProudlyPresent);
+            return schedule.NowGoing(now).NavigationArgs(MenuItemType.ProudlyPresent, nameof(NowGoingOnePresentations));
         }
     }
 }

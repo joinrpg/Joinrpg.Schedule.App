@@ -19,6 +19,8 @@ namespace Joinrpg.Schedule.App.ViewModels
 
         public int Id { get; }
 
+        public ProgramItemInfoApi Item { get; set; }
+
         public ProgramItemModel(ProgramItemInfoApi model)
         {
             Id = model.ProgramItemId;
@@ -28,6 +30,7 @@ namespace Joinrpg.Schedule.App.ViewModels
             EndTime = model.EndTime.ToLocalTime().TimeOfDay.ToString();
             Authors = string.Join(", ", model.Authors.Select(author => author.Name));
             Room = string.Join(", ", model.Rooms.Select(room => room.Name));
+            Item = model;
         }
 
         public ProgramItemModel()

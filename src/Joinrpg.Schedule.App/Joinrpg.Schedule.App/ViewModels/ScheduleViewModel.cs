@@ -29,6 +29,7 @@ namespace Joinrpg.Schedule.App.ViewModels
         private string _title;
         private Timer _timer;
         private string _currentTime;
+        private IReadOnlyList<ProgramItemInfoApi> cachedItems;
 
         public Command LoadItemsCommand { get; set; }
 
@@ -47,6 +48,7 @@ namespace Joinrpg.Schedule.App.ViewModels
 
         public void PageOnAppearing()
         {
+            SelectItems();
             _timer.Change(0, 2000);
         }
         public void PageOnDisappearing()
@@ -131,12 +133,8 @@ namespace Joinrpg.Schedule.App.ViewModels
         {
             try
             {
-                var items = await _scheduleService.GetSchedule();
-                ProgramItems.Clear();
-                foreach (var item in SelectProgramItems(items))
-                {
-                    ProgramItems.Add(new ProgramItemModel(item));
-                }
+                cachedItems = await _scheduleService.GetSchedule();
+                SelectItems();
             }
             catch (Exception e)
             {
@@ -150,6 +148,15 @@ namespace Joinrpg.Schedule.App.ViewModels
             HasError = false;
             ErrorText = "";
             Loaded = true;
+        }
+
+        private void SelectItems()
+        {
+            ProgramItems.Clear();
+            foreach (var item in SelectProgramItems(cachedItems))
+            {
+                ProgramItems.Add(new ProgramItemModel(item));
+            }
         }
 
         private IOrderedEnumerable<ProgramItemInfoApi> SelectProgramItems(IReadOnlyList<ProgramItemInfoApi> items)

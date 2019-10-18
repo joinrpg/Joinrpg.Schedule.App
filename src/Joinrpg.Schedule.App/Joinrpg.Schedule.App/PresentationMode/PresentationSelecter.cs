@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Joinrpg.Schedule.App.PresentationMode.PresentationSuggesters;
@@ -16,14 +17,14 @@ namespace Joinrpg.Schedule.App.PresentationMode
 
         public PresentationSelecter()
         {
-            _dateTimeProvider = DependencyService.Get<DateTimeProvider>();
+            _dateTimeProvider = DependencyService.Get<IDateTimeProvider>();
             _holder = DependencyService.Get<CurrentScheduleHolder>();
 
             //TODO inject enumerable from DI
             _suggesters = new List<IPresentationSuggester>()
             {
                 new TodayPresentations(),
-                new TomorrowPresentations(),
+               new TomorrowPresentations(),
                 new NowGoingListPresentations(),
                 new NowGoingOnePresentations(),
                 new ProudlyPresentsPresentation(),
@@ -35,7 +36,8 @@ namespace Joinrpg.Schedule.App.PresentationMode
             var currentScheduleService = _holder.GetCurrentScheduleService();
             var schedule = await currentScheduleService.GetSchedule();
             var now = _dateTimeProvider.Now();
-            return _suggesters.Select(s => s.GetSuggestions(now, schedule).ToList().SelectRandom()).Where(l => l != null).ToList().SelectRandom();
+            var result = _suggesters.Select(s => s.GetSuggestions(now, schedule).ToList().SelectRandom()).Where(l => l != null).ToList().SelectRandom();
+            return result;
         }
     }
 
