@@ -19,6 +19,7 @@ namespace Joinrpg.Schedule.App.Views
     {
         Dictionary<MenuItemType, NavigationPage> MenuPages = new Dictionary<MenuItemType, NavigationPage>();
         readonly Timer timer;
+        private bool _presentationMode;
 
         private async void Timer_Tick(object state)
         {
@@ -41,16 +42,31 @@ namespace Joinrpg.Schedule.App.Views
 
         public PresentationSelecter Selector { get; set; }
 
-        protected override void OnAppearing()
+        public bool PresentationMode
         {
-            base.OnAppearing();
-            timer.Change(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(10));
+            get => _presentationMode;
+            set
+            {
+                if (_presentationMode == value)
+                {
+                    return;
+                }
+                _presentationMode = value;
+                if (_presentationMode)
+                {
+                    timer.Change(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(10));
+                }
+                else
+                {
+                    timer.Change(-1, -1);
+                }
+            }
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            timer.Change(-1, -1);
+            PresentationMode = false;
         }
 
         public async Task NavigateFromMenu(NavigationArgs args)

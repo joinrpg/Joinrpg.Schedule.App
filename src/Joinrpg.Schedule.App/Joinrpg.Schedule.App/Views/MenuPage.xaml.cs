@@ -37,6 +37,7 @@ namespace Joinrpg.Schedule.App.Views
                     return;
 
                 var id = ((HomeMenuItem)e.SelectedItem).Id;
+                RootPage.PresentationMode = false;
                 await RootPage.NavigateFromMenu(new NavigationArgs() {Type = id});
             };
         }
