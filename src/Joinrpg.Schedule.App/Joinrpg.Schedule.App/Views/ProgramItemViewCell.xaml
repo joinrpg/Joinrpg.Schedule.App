@@ -26,7 +26,8 @@
 
               <StackLayout Padding="10" Grid.Row="0" Grid.Column="1">
                   <Label Text="{Binding Name}" 
-                         LineBreakMode="NoWrap" 
+                         LineBreakMode="CharacterWrap" 
+                         MaxLines="2"
                          Style="{DynamicResource ListItemTextStyle}" 
                          FontSize="16" />
                   <Label Text="{Binding Room}" 
