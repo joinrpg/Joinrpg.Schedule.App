@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using Joinrpg.Schedule.App.Models;
+using Joinrpg.Schedule.App.PresentationMode;
 using Joinrpg.Schedule.App.ViewModels;
 
 namespace Joinrpg.Schedule.App.Views
@@ -15,46 +17,61 @@ namespace Joinrpg.Schedule.App.Views
     [DesignTimeVisible(false)]
     public partial class MainPage : MasterDetailPage
     {
-        Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
+        Dictionary<MenuItemType, NavigationPage> MenuPages = new Dictionary<MenuItemType, NavigationPage>();
+        readonly Timer timer;
+
+        private async void Timer_Tick(object state)
+        {
+            var args = await Selector.GetNextPresentation();
+
+            await Device.InvokeOnMainThreadAsync(() => NavigateFromMenu(args) );
+        }
+
         public MainPage()
         {
             InitializeComponent();
 
             MasterBehavior = MasterBehavior.Popover;
 
+            Selector = DependencyService.Get<PresentationSelecter>();
+
             MenuPages.Add((int)MenuItemType.Today, (NavigationPage)Detail);
+            timer = new Timer(Timer_Tick);
         }
 
-        public async Task NavigateFromMenu(int id)
-        {
-            if (!MenuPages.ContainsKey(id))
-            {
-                var itemType = (MenuItemType) id;
-                switch (itemType)
-                {
-                    case MenuItemType.Today:
-                        MenuPages.Add(id, new NavigationPage(new SchedulePage(ProgramItemsSelectMode.Today)));
-                        break;
-                    case MenuItemType.About:
-                        MenuPages.Add(id, new NavigationPage(new AboutPage()));
-                        break;
-                    case MenuItemType.NowGoing:
-                        MenuPages.Add(id, new NavigationPage(new SchedulePage(ProgramItemsSelectMode.NowGoing)));
-                        break;
-                    case MenuItemType.Tomorrow:
-                        MenuPages.Add(id, new NavigationPage(new SchedulePage(ProgramItemsSelectMode.Tomorrow)));
-                        break;
-                    case MenuItemType.ProudlyPresent:
-                        throw  new NotImplementedException();
-                    case MenuItemType.All:
-                        MenuPages.Add(id, new NavigationPage(new SchedulePage(ProgramItemsSelectMode.All)));
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
+        public PresentationSelecter Selector { get; set; }
 
-            var newPage = MenuPages[id];
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            timer.Change(TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(10));
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            timer.Change(-1, -1);
+        }
+
+        public async Task NavigateFromMenu(NavigationArgs args)
+        {
+            NavigationPage newPage;
+            if (args.ExtraAgrument != null)
+            {
+                // do not cache pages with ids for now TODO improve
+                newPage = await ConstructPage(args);
+
+            }
+            else
+            {
+                if (!MenuPages.ContainsKey(args.Type))
+                {
+                    newPage = await ConstructPage(args);
+                    MenuPages.Add(args.Type, newPage);
+                }
+
+                newPage = MenuPages[args.Type];
+            }
 
             if (newPage != null && Detail != newPage)
             {
@@ -65,6 +82,39 @@ namespace Joinrpg.Schedule.App.Views
 
                 IsPresented = false;
             }
+        }
+
+        private static async Task<NavigationPage> ConstructPage(NavigationArgs args)
+        {
+            NavigationPage newPage;
+            switch (args.Type)
+            {
+                case MenuItemType.Today:
+                    newPage = new NavigationPage(new SchedulePage(ProgramItemsSelectMode.Today));
+                    break;
+                case MenuItemType.About:
+                    newPage = new NavigationPage(new AboutPage());
+                    break;
+                case MenuItemType.NowGoing:
+                    newPage = new NavigationPage(new SchedulePage(ProgramItemsSelectMode.NowGoing));
+                    break;
+                case MenuItemType.Tomorrow:
+                    newPage = new NavigationPage(new SchedulePage(ProgramItemsSelectMode.Tomorrow));
+                    break;
+                case MenuItemType.ProudlyPresent:
+                    var itemDetailViewModel = new ItemDetailViewModel();
+                    await itemDetailViewModel.InitializeAsync(args.ExtraAgrument);
+                    var itemDetailPage = new ItemDetailPage(itemDetailViewModel);
+                    newPage = new NavigationPage(itemDetailPage);
+                    break;
+                case MenuItemType.All:
+                    newPage = new NavigationPage(new SchedulePage(ProgramItemsSelectMode.All));
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return newPage;
         }
     }
 }

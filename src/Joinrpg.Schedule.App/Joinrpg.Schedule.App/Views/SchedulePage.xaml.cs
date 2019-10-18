@@ -33,11 +33,11 @@ namespace Joinrpg.Schedule.App.Views
             _itemSelectMode = itemSelectMode;
             InitializeComponent();
 
-            var scheduleService = DependencyService.Get<IScheduleService>();
+            var scheduleService = DependencyService.Get<CurrentScheduleHolder>();
             var provider = DependencyService.Get<IDateTimeProvider>();
 
             //TODO from DI
-            BindingContext = viewModel = new ScheduleViewModel(scheduleService.GetProjectScheduleService(589), provider);
+            BindingContext = viewModel = new ScheduleViewModel(scheduleService.GetCurrentScheduleService(), provider);
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -45,15 +45,13 @@ namespace Joinrpg.Schedule.App.Views
             if (!(args.SelectedItem is ProgramItemModel item))
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            var itemDetailViewModel = new ItemDetailViewModel();
+            await itemDetailViewModel.InitializeAsync(item.Id);
+            var itemDetailPage = new ItemDetailPage(itemDetailViewModel);
+            await Navigation.PushAsync(itemDetailPage);
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null; 
-        }
-
-        async void AddItem_Clicked(object sender, EventArgs e)
-        {
-      //      await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
         }
 
         protected override async void OnAppearing()

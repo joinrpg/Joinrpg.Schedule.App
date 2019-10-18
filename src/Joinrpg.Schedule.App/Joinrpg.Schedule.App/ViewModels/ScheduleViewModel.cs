@@ -135,16 +135,14 @@ namespace Joinrpg.Schedule.App.ViewModels
             {
                 case ProgramItemsSelectMode.Today:
                     var today = now.Date;
-                    return items.Where(item => item.StartTime.Date == today || item.EndTime.Date == today)
-                        .Where(item => item.EndTime > now)
+                    return items.PlannedForDay(today).NotPassed(now)
                         .OrderBy(item => item.StartTime);
                 case ProgramItemsSelectMode.NowGoing:
-                    return items.Where(item => item.StartTime.AddMinutes(-10) < now && now < item.EndTime)
+                    return items.NowGoing(now)
                         .OrderBy(item => item.Name);
                 case ProgramItemsSelectMode.Tomorrow:
                     var tomorrow = now.Date.AddDays(1);
-                    return items.Where(item => item.StartTime.Date == tomorrow || item.EndTime.Date == tomorrow)
-                        .OrderBy(item => item.StartTime);
+                    return items.PlannedForDay(tomorrow).OrderBy(item => item.StartTime);
                 case ProgramItemsSelectMode.All:
                     return items.OrderBy(item => item.StartTime);
                     break;

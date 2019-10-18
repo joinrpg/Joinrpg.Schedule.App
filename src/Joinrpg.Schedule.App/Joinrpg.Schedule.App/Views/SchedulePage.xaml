@@ -14,9 +14,6 @@
     <d:ContentPage.BindingContext>
         <vm:ScheduleViewModel></vm:ScheduleViewModel>
     </d:ContentPage.BindingContext>
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="AddItem_Clicked" />
-    </ContentPage.ToolbarItems>
 
     <StackLayout>
         <Label Text="{Binding ErrorText}" IsVisible="{Binding HasError}"  HorizontalTextAlignment="Center"/>

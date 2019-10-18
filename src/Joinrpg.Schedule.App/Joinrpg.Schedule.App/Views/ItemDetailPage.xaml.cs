@@ -26,10 +26,14 @@ namespace Joinrpg.Schedule.App.Views
         {
             InitializeComponent();
 
-            var item = new ProgramItemModel();
-
-            viewModel = new ItemDetailViewModel(item);
+            viewModel = new ItemDetailViewModel();
             BindingContext = viewModel;
         }
+
+        public ItemDetailPage(int id)
+        {
+            InitializeComponent();
+        }
+
     }
 }

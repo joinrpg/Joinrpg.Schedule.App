@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Joinrpg.Schedule.App.PresentationMode;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,7 +13,7 @@ namespace Joinrpg.Schedule.App.Views
     [DesignTimeVisible(false)]
     public partial class MenuPage : ContentPage
     {
-        MainPage RootPage { get => Application.Current.MainPage as MainPage; }
+        MainPage RootPage => Application.Current.MainPage as MainPage;
         List<HomeMenuItem> menuItems;
         public MenuPage()
         {
@@ -35,8 +36,8 @@ namespace Joinrpg.Schedule.App.Views
                 if (e.SelectedItem == null)
                     return;
 
-                var id = (int)((HomeMenuItem)e.SelectedItem).Id;
-                await RootPage.NavigateFromMenu(id);
+                var id = ((HomeMenuItem)e.SelectedItem).Id;
+                await RootPage.NavigateFromMenu(new NavigationArgs() {Type = id});
             };
         }
     }

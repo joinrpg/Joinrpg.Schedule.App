@@ -1,4 +1,5 @@
 ﻿using System;
+using Joinrpg.Schedule.App.PresentationMode;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Joinrpg.Schedule.App.Services;
@@ -16,6 +17,8 @@ namespace Joinrpg.Schedule.App
 
             DependencyService.Register<ScheduleServiceImpl>();
             DependencyService.Register<DateTimeProvider>();
+            DependencyService.Register<CurrentScheduleHolder>();
+            DependencyService.Register<PresentationSelecter>();
             MainPage = new MainPage();
         }
 

@@ -17,8 +17,11 @@ namespace Joinrpg.Schedule.App.ViewModels
         public string Authors { get; }
         public string Room { get;  }
 
+        public int Id { get; }
+
         public ProgramItemModel(ProgramItemInfoApi model)
         {
+            Id = model.ProgramItemId;
             Name = model.Name;
             Description = WebUtility.HtmlDecode(model.Description);
             StartTime = model.StartTime.ToLocalTime().TimeOfDay.ToString();
