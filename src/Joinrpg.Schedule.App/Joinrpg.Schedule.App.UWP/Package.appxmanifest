@@ -9,7 +9,7 @@
   <Identity
     Name="1113052EE17A8.JoinrpgSchedule"
     Publisher="CN=DCCF689E-7BDB-43A9-A58E-D9E1581C1C04"
-    Version="1.0.0.0" />
+    Version="0.1.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="92833830-5e8a-4fa7-b301-5d2ffb7175a7" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
