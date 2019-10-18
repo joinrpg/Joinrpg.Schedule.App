@@ -17,7 +17,11 @@
 
     <StackLayout>
         <Label Text="{Binding ErrorText}" IsVisible="{Binding HasError}"  HorizontalTextAlignment="Center"/>
-        <Label Text="{Binding Title}" FontSize="40"></Label>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="{Binding Title}" FontSize="40"></Label>
+            <Label Text="{Binding CurrentTime}" FontSize="40" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"></Label>
+        </StackLayout>
+        
         <ListView x:Name="ItemsListView"
                 ItemsSource="{Binding ProgramItems}"
                 VerticalOptions="FillAndExpand"

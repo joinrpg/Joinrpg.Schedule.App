@@ -53,6 +53,10 @@
                         Command="{Binding StartPresentationCommand}"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />
+                <Button Margin="0,10,0,0" Text="Заморозить время"
+                        Command="{Binding FreezeTimeDebugCommand}"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White" />
             </StackLayout>
         </ScrollView>
     </Grid>

@@ -62,7 +62,15 @@ namespace Joinrpg.Schedule.App.Views
             {
                 await viewModel.InitializeAsync(_itemSelectMode);
             }
+
+            viewModel.PageOnAppearing();
                 
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            viewModel.PageOnDisappearing();
         }
     }
 }

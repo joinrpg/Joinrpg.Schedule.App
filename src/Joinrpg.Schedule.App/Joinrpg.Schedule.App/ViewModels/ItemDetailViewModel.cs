@@ -8,6 +8,8 @@ namespace Joinrpg.Schedule.App.ViewModels
     {
         public ProgramItemModel Item { get; set; }
 
+
+
         public ItemDetailViewModel()
         {
             ScheduleHolder = DependencyService.Get<CurrentScheduleHolder>();

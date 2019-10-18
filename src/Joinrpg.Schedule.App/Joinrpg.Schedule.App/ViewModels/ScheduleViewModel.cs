@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Joinrpg.Schedule.App.Services.Interfaces;
 using JoinRpg.Web.XGameApi.Contract.Schedule;
@@ -26,6 +27,8 @@ namespace Joinrpg.Schedule.App.ViewModels
         private bool _hasError;
         private string _errorText;
         private string _title;
+        private Timer _timer;
+        private string _currentTime;
 
         public Command LoadItemsCommand { get; set; }
 
@@ -38,13 +41,34 @@ namespace Joinrpg.Schedule.App.ViewModels
         {
             _dateTimeProvider = dateTimeProvider;
             _scheduleService = scheduleService;
+            _timer = new Timer(UpdateTime);
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+        }
+
+        public void PageOnAppearing()
+        {
+            _timer.Change(0, 2000);
+        }
+        public void PageOnDisappearing()
+        {
+            _timer.Change(-1, -1);
+        }
+
+        private void UpdateTime(object state)
+        {
+            CurrentTime = _dateTimeProvider.Now().ToString("t");
         }
 
         private async Task ExecuteLoadItemsCommand()
         {
             await _scheduleService.ForceUpdate();
             await UpdateSchedule();
+        }
+
+        public string CurrentTime
+        {
+            get => _currentTime;
+            set => SetProperty(ref _currentTime, value);
         }
 
         public ObservableCollection<ProgramItemModel> ProgramItems

@@ -7,10 +7,15 @@ namespace Joinrpg.Schedule.App
 {
     public class DateTimeProvider : IDateTimeProvider
     {
+        private DateTimeOffset? _freezedTime = null;
         public DateTimeOffset Now()
         {
-            return new DateTimeOffset(2019, 10, 19, 15, 00, 01, TimeSpan.FromHours(3));
-            //return DateTimeOffset.Now;
+            return _freezedTime ?? DateTimeOffset.Now;
+        }
+
+        public void SetDebug()
+        {
+            _freezedTime = new DateTimeOffset(2019, 10, 19, 15, 00, 01, TimeSpan.FromHours(3));
         }
     }
 }
