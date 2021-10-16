@@ -153,6 +153,10 @@ namespace Joinrpg.Schedule.App.ViewModels
         private void SelectItems()
         {
             ProgramItems.Clear();
+            if (cachedItems is null)
+            {
+                return;
+            }
             foreach (var item in SelectProgramItems(cachedItems))
             {
                 ProgramItems.Add(new ProgramItemModel(item));
