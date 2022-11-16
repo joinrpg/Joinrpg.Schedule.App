@@ -9,7 +9,7 @@ namespace Joinrpg.Schedule.App.Services.Interfaces
     {
         Task<IReadOnlyList<ProgramItemInfoApi>> GetSchedule();
 
-        event Action OnScheduleUpdated;
+       // event Action OnScheduleUpdated;
 
         Task ForceUpdate();
     }

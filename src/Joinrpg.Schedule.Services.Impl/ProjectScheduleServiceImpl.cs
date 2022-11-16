@@ -44,7 +44,7 @@ namespace Joinrpg.Schedule.Services.Impl
             }
         }
 
-        public event Action OnScheduleUpdated;
+        //public event Action OnScheduleUpdated;
         public Task ForceUpdate()
         {
             throw new NotImplementedException();

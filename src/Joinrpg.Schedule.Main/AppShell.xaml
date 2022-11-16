@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Joinrpg.Schedule.Main.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Joinrpg.Schedule.Main"
+    xmlns:views="clr-namespace:Joinrpg.Schedule.Main.Views"
+    Shell.FlyoutBehavior="Disabled">
+
+    <TabBar>
+        <ShellContent Title="About"
+                     Icon="cat.png"
+                     ContentTemplate="{DataTemplate views:AboutPage}" />
+        <ShellContent Title="Today"
+                     Icon="cat.png"
+                     ContentTemplate="{DataTemplate views:SchedulePage}"
+                     Route="/schedule?mode=today">
+        </ShellContent>
+
+    </TabBar>
+    <!--<ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:Views.MainPage}"
+        Route="MainPage" />-->
+
+</Shell>

@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "Joinrpg.Schedule.App.UWP (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Joinrpg.Schedule.App.UWP (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

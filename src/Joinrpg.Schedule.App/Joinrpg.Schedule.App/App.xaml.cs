@@ -1,10 +1,10 @@
 ﻿using System;
 using Joinrpg.Schedule.App.PresentationMode;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 using Joinrpg.Schedule.App.Services;
 using Joinrpg.Schedule.App.Views;
 using Joinrpg.Schedule.Services.Impl;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
 namespace Joinrpg.Schedule.App
 {

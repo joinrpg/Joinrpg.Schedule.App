@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:Joinrpg.Schedule.Main.ViewModels;assembly=Joinrpg.Schedule.Main"
+             mc:Ignorable="d"
+             x:Class="Joinrpg.Schedule.Main.Views.ProgramItemViewCell">
+    <d:ContentView.BindingContext>
+        <viewModels:ProgramItemModel></viewModels:ProgramItemModel>
+    </d:ContentView.BindingContext>
+          <Grid>
+              <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto"></RowDefinition>
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto"></ColumnDefinition>
+                  <ColumnDefinition Width="*"></ColumnDefinition>
+              </Grid.ColumnDefinitions>
+              <Frame Grid.Row="0" Grid.Column="0">
+                  <StackLayout Orientation="Vertical" >
+                      <Label Text="{Binding StartTime}" FontSize="16" LineBreakMode="TailTruncation"></Label>
+                      <Label Text="{Binding EndTime}" FontSize="16" LineBreakMode="TailTruncation"></Label>
+                  </StackLayout>
+              </Frame>
+
+              <StackLayout Padding="10" Grid.Row="0" Grid.Column="1">
+                  <Label Text="{Binding Name}" 
+                         LineBreakMode="CharacterWrap" 
+                         MaxLines="2"
+                         Style="{DynamicResource ListItemTextStyle}" 
+                         FontSize="16" />
+                  <Label Text="{Binding Room}" 
+                         LineBreakMode="NoWrap"
+                         Style="{DynamicResource ListItemDetailTextStyle}"
+                         FontSize="13" />
+                  <Label Text="{Binding Authors}" 
+                         LineBreakMode="NoWrap"
+                         Style="{DynamicResource ListItemDetailTextStyle}"
+                         FontSize="13" />
+              </StackLayout>
+          </Grid>
+</ContentView>
