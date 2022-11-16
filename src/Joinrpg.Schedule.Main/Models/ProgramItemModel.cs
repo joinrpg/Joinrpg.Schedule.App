@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Net;
+﻿using System.Net;
 using JoinRpg.Web.XGameApi.Contract.Schedule;
 
 namespace Joinrpg.Schedule.Main.ViewModels

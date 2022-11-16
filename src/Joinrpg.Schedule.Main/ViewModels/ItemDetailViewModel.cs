@@ -5,9 +5,15 @@ namespace Joinrpg.Schedule.Main.ViewModels
     [QueryProperty(nameof(Id), "id")]
     public class ItemDetailViewModel : BaseViewModel
     {
-        public ProgramItemModel? Item { get; set; }
+        public ProgramItemModel? Item { get => item; set { SetProperty(ref item, value); } }
 
         private int id;
+        private bool goingNow;
+        private bool today;
+        private bool tomorrow;
+        private bool passed;
+        private ProgramItemModel? item;
+
         public int Id
         {
             get => id;
@@ -27,16 +33,26 @@ namespace Joinrpg.Schedule.Main.ViewModels
 
         private IDateTimeProvider DateTimeProvider { get; }
 
-        public bool GoingNow => Item?.Item.NowGoing(DateTimeProvider.Now()) ?? false;
-        public bool Today => !Passed && (Item?.Item.NowGoing(DateTimeProvider.Now().Date) ?? false);
-        public bool Tomorrow => Item?.Item.PlannedForDay(DateTimeProvider.Now().Date.AddDays(1)) ?? false;
-
-        public bool Passed => !Item?.Item.NotPassed(DateTimeProvider.Now()) ?? false;
+        public bool GoingNow
+        {
+            get => goingNow;
+            set
+            {
+                SetProperty(ref goingNow, value);
+            }
+        }
+        public bool Today { get => today; set { SetProperty(ref today, value); } }
+        public bool Tomorrow { get => tomorrow; set { SetProperty(ref tomorrow, value); } }
+        public bool Passed { get => passed; set { SetProperty(ref passed, value); } }
 
         private void SetItemProperties(ProgramItemModel item)
         {
-            Title = item?.Name;
+            Title = item.Name;
             Item = item;
+            GoingNow = item.Item.NowGoing(DateTimeProvider.Now());
+            Passed = item.Item.NotPassed(DateTimeProvider.Now());
+            Today = !Passed && Item.Item.NowGoing(DateTimeProvider.Now().Date);
+            Tomorrow = item.Item.PlannedForDay(DateTimeProvider.Now().Date.AddDays(1));
         }
 
         public async Task Update()

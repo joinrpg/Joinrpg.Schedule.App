@@ -13,19 +13,17 @@
     </d:ContentPage.BindingContext>
 
    <ContentView>
-        <Label>
-            УРА!!!!
-        </Label>
-       <!--<StackLayout>
-           <Label Text="Прямо сейчас" BackgroundColor="Yellow" IsVisible="{Binding GoingNow}" HorizontalTextAlignment="Center" FontSize="40"></Label>
+
+       <StackLayout>
+            <Label Text="Прямо сейчас" BackgroundColor="Yellow" IsVisible="{Binding GoingNow}" HorizontalTextAlignment="Center" FontSize="40"></Label>
            <Label Text="Завтра" BackgroundColor="DimGray" IsVisible="{Binding Tomorrow}" HorizontalTextAlignment="Center" FontSize="40"></Label>
            <Label Text="Позднее сегодня" BackgroundColor="Green" IsVisible="{Binding Today}" HorizontalTextAlignment="Center" FontSize="40"></Label>
            <Label Text="Уже прошло" BackgroundColor="DarkRed" IsVisible="{Binding Passed}" HorizontalTextAlignment="Center" FontSize="40"></Label>
             <views:ProgramItemViewCell BindingContext="{Binding Item}">
 
            </views:ProgramItemViewCell>
-           <Label Text="{Binding Item.Description}" LineBreakMode="WordWrap" Margin="10"></Label>
-       </StackLayout>-->
+            <Label Text="{Binding Item.Description}" LineBreakMode="WordWrap" Margin="10"></Label>
+       </StackLayout>
     </ContentView>
     
 </ContentPage>

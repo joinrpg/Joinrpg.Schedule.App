@@ -18,9 +18,4 @@
         </ShellContent>
 
     </TabBar>
-    <!--<ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:Views.MainPage}"
-        Route="MainPage" />-->
-
 </Shell>
