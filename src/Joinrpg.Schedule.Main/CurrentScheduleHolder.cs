@@ -15,6 +15,6 @@ namespace Joinrpg.Schedule.Main
         {
             this.scheduleService = scheduleService;
         }
-        public IProjectScheduleService GetCurrentScheduleService() => scheduleService.GetProjectScheduleService(589);
+        public IProjectScheduleService GetCurrentScheduleService() => scheduleService.GetProjectScheduleService(638);
     }
 }

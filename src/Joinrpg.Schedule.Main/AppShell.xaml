@@ -8,14 +8,38 @@
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
-        <ShellContent Title="About"
-                     Icon="cat.png"
-                     ContentTemplate="{DataTemplate views:AboutPage}" />
-        <ShellContent Title="Today"
-                     Icon="cat.png"
-                     ContentTemplate="{DataTemplate views:SchedulePage}"
-                     Route="/schedule?mode=today">
-        </ShellContent>
-
+        <Tab Title="О программе">
+            <ShellContent Title="About"
+                         Icon="cat.png"
+                         ContentTemplate="{DataTemplate views:AboutPage}" />
+            </Tab>
+        <Tab Title="Сегодня">
+            <ShellContent
+                         Icon="cat.png"
+                         ContentTemplate="{DataTemplate views:TodayPage}"
+                         Route="today" 
+                          />
+        </Tab>
+        <Tab Title="Завтра">
+            <ShellContent
+                         Icon="cat.png"
+                         ContentTemplate="{DataTemplate views:TomorrowPage}"
+                         Route="tomorrow" 
+                          />
+        </Tab>
+        <Tab Title="Все">
+            <ShellContent
+                         Icon="cat.png"
+                         ContentTemplate="{DataTemplate views:AllPage}"
+                         Route="all" 
+                          />
+        </Tab>
+        <Tab Title="Сейчас идет">
+            <ShellContent
+                         Icon="cat.png"
+                         ContentTemplate="{DataTemplate views:NowPage}"
+                         Route="now" 
+                          />
+        </Tab>
     </TabBar>
 </Shell>

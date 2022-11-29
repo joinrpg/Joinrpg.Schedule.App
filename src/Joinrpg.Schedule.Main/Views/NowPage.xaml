@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<views:SchedulePageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Joinrpg.Schedule.Main.ViewModels;assembly=Joinrpg.Schedule.Main"
              xmlns:views="clr-namespace:Joinrpg.Schedule.Main.Views;assembly=Joinrpg.Schedule.Main"
              mc:Ignorable="d"
-             x:Class="Joinrpg.Schedule.Main.Views.SchedulePage"
+             x:Class="Joinrpg.Schedule.Main.Views.NowPage"
              Title="{Binding Title}"
              x:Name="BrowseItemsPage"
+             
 >
 
     <StackLayout>
@@ -37,4 +38,4 @@
         </ListView>
     </StackLayout>
     
-</ContentPage>
+</views:SchedulePageBase>

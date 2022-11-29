@@ -51,7 +51,10 @@ namespace Joinrpg.Schedule.Main
 
         public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
         {
-            mauiAppBuilder.Services.AddTransient<SchedulePage>();
+            mauiAppBuilder.Services.AddTransient<TodayPage>();
+            mauiAppBuilder.Services.AddTransient<TomorrowPage>();
+            mauiAppBuilder.Services.AddTransient<NowPage>();
+            mauiAppBuilder.Services.AddTransient<AllPage>();
             mauiAppBuilder.Services.AddTransient<ItemDetailPage>();
 
             return mauiAppBuilder;

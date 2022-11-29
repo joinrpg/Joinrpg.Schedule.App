@@ -59,4 +59,34 @@
 	  <ProjectReference Include="..\Joinrpg.Schedule.Services.Impl\Joinrpg.Schedule.Services.Impl.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Compile Update="Views\AllPage.xaml.cs">
+	    <DependentUpon>AllPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\NowPage.xaml.cs">
+	    <DependentUpon>NowPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TomorrowPage.xaml.cs">
+	    <DependentUpon>TomorrowPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TodayPage.xaml.cs">
+	    <DependentUpon>TodayPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\SchedulePageBase.cs">
+	    <DependentUpon>%(Filename)</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\AllPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\NowPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TomorrowPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

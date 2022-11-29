@@ -8,7 +8,10 @@ namespace Joinrpg.Schedule.Main
         {
             InitializeComponent();
 
-            Routing.RegisterRoute("schedule", typeof(SchedulePage));
+            Routing.RegisterRoute("today", typeof(TodayPage));
+            Routing.RegisterRoute("all", typeof(AllPage));
+            Routing.RegisterRoute("now", typeof(NowPage));
+            Routing.RegisterRoute("tomorrow", typeof(TomorrowPage));
             Routing.RegisterRoute("item", typeof(ItemDetailPage));
         }
     }
